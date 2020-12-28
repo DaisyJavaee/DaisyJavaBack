@@ -11,12 +11,12 @@ public class JWTUtils {
     private static final String SIGN="GREAT";
 
     //生成token
-    public static String getToke(String userName){
+    public static String getToke(String account){
         Calendar instance =Calendar.getInstance();
         instance.add(Calendar.HOUR,1);
         //使用这种方式能够获取令牌
         String token= JWT.create()
-                .withClaim("userName",userName)
+                .withClaim("account",account)
                 .withExpiresAt(instance.getTime())
                 .sign(Algorithm.HMAC256(SIGN));
         return token;
