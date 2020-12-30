@@ -4,9 +4,7 @@ import daisy.teaming.bean.Project;
 import daisy.teaming.service.ProjectService;
 import daisy.teaming.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -17,31 +15,31 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
-    @RequestMapping("/addProject")
+    @RequestMapping(value="/project",method = RequestMethod.POST)
     public Result addProject(@RequestBody Project project , HttpServletRequest request)
     {
         return projectService.addProject(project,request);
     }
 
-    @RequestMapping("/getProject")
-    public Result getProject(@RequestBody Map<String, Integer> map)
+    @RequestMapping(value="/projects/{projectId}",method = RequestMethod.GET)
+    public Result getProject(@PathVariable int projectId)
     {
-        return projectService.getProject(map.get("projectId"));
+        return projectService.getProject(projectId);
     }
 
-    @RequestMapping("/deleteProject")
-    public Result deleteProject(@RequestBody Map<String, Integer> map,HttpServletRequest request)
+    @RequestMapping(value="/projects/{projectId}",method = RequestMethod.DELETE)
+    public Result deleteProject(HttpServletRequest request, @PathVariable int projectId)
     {
-        return projectService.deleteProject(map.get("projectId"),request);
+        return projectService.deleteProject(projectId,request);
     }
 
-    @RequestMapping("/getProjectList")
+    @RequestMapping(value="/projects",method = RequestMethod.GET)
     public Result getProjectList()
     {
         return projectService.getProjectList();
     }
 
-    @RequestMapping("updateProject")
+    @RequestMapping(value="/projects",method=RequestMethod.PATCH)
     public Result updateProject(@RequestBody Project project,HttpServletRequest request)
     {
         return projectService.updateProject(project,request);

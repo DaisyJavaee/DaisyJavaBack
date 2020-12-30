@@ -1,6 +1,8 @@
 package daisy.teaming.service;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
+import daisy.teaming.bean.Group;
+import daisy.teaming.bean.Project;
 import daisy.teaming.bean.User;
 import daisy.teaming.mapper.UserMapper;
 import daisy.teaming.util.JWTUtils;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Service
 @Transactional(rollbackFor = RuntimeException.class)
@@ -81,6 +84,22 @@ public class UserService {
         }
         return result;
     }
+    public Result getUser(String account)
+    {
+        Result result = new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try{
+            User user=userMapper.getUser(account);
+            result.setSuccess(true);
+            result.setDetail(user);
+        }catch(Exception e)
+        {
+            result.setSuccess(false);
+            result.setMsg(e.getMessage());
+        }
+        return result;
+    }
 
     public Result updateUser(User user,HttpServletRequest request)
     {
@@ -103,5 +122,44 @@ public class UserService {
         }
         return result;
     }
+    public Result getProjects(HttpServletRequest request)
+    {
+        Result result = new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try{
+            String token = request.getHeader("token");
+            DecodedJWT verify = JWTUtils.decode(token);
+            String account = verify.getClaim("account").asString();
+            List<Project> projects=userMapper.getProjects(account);
+            result.setDetail(projects);
+            result.setSuccess(true);
 
+        }catch(Exception e)
+        {
+            result.setSuccess(false);
+            result.setMsg(e.getMessage());
+        }
+        return result;
+    }
+    public Result getGroups(HttpServletRequest request)
+    {
+        Result result = new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try{
+            String token = request.getHeader("token");
+            DecodedJWT verify = JWTUtils.decode(token);
+            String account = verify.getClaim("account").asString();
+            List<Group> projects=userMapper.getGroups(account);
+            result.setDetail(projects);
+            result.setSuccess(true);
+
+        }catch(Exception e)
+        {
+            result.setSuccess(false);
+            result.setMsg(e.getMessage());
+        }
+        return result;
+    }
 }

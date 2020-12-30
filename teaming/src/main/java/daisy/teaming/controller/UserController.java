@@ -4,9 +4,7 @@ import daisy.teaming.bean.User;
 import daisy.teaming.service.UserService;
 import daisy.teaming.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,29 +15,48 @@ public class UserController
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/register")
+    @RequestMapping(value="/register",method = RequestMethod.POST)
     public Result register(@RequestBody User user)
     {
         return userService.register(user);
     }
 
-    @RequestMapping("/login")
+    @RequestMapping(value="/login",method=RequestMethod.POST)
     public Result login(@RequestBody User user)
     {
         return userService.login(user);
     }
 
-    @RequestMapping("/getUser")
+    @RequestMapping(value ="/profile",method = RequestMethod.GET)
     public Result getUser(HttpServletRequest request)
     {
         return userService.getUser(request);
     }
 
-    @RequestMapping("/updateUser")
+    @RequestMapping(value="/profile/{userId}",method= RequestMethod.GET)
+    public Result getUser(@PathVariable String userId)
+    {
+        return userService.getUser(userId);
+    }
+
+    @RequestMapping(value="/profile",method = RequestMethod.PATCH)
     public Result updateUser(@RequestBody User user,HttpServletRequest request)
     {
         return userService.updateUser(user,request);
     }
+
+    @RequestMapping(value="/projects",method=RequestMethod.GET)
+    public Result getProjects(HttpServletRequest request)
+    {
+        return userService.getProjects(request);
+    }
+
+    @RequestMapping(value="/groups",method = RequestMethod.GET)
+    public Result getGroups(HttpServletRequest request)
+    {
+        return userService.getGroups(request);
+    }
+
 }
 
 
