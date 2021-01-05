@@ -22,6 +22,6 @@ public interface ProjectMapper {
     @Select("select * from project")
     List<Project> getProjectList();
 
-    @Update("update project set name=#{name},startTime=#{startTime},endTime=#{endTime},introduction=#{introduction},maxNum=#{maxNum} where projectId=#{projectId1} ")
-    void updateProject(Project project,int projectId1);
+    @Update("update project set name=#{name},startTime=#{startTime},endTime=#{endTime},introduction=#{introduction},maxNum=#{maxNum} where projectId=#{projectId} ")
+    void updateProject(Project project);
 }

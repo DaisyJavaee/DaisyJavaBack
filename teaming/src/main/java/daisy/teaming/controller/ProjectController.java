@@ -14,7 +14,7 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
-    @RequestMapping(value="/project",method = RequestMethod.POST)
+    @RequestMapping(value="/projects",method = RequestMethod.POST)
     public Result addProject(@RequestBody Project project , HttpServletRequest request)
     {
         return projectService.addProject(project,request);
@@ -39,7 +39,7 @@ public class ProjectController {
     }
 
     @RequestMapping(value="/projects/{projectId}",method=RequestMethod.PATCH)
-    public Result updateProject(@RequestBody Project project,int projectId,HttpServletRequest request)
+   public Result updateProject(@PathVariable int projectId,@RequestBody Project project,HttpServletRequest request)
     {
         return projectService.updateProject(project,projectId,request);
     }

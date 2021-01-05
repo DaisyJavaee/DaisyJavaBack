@@ -57,6 +57,16 @@ public class UserController
         return userService.getGroups(request);
     }
 
+    @RequestMapping(value="/applications",method = RequestMethod.GET)
+    public Result getApplications(HttpServletRequest request)
+    {
+        return userService.getApplications(request);
+    }
+    @RequestMapping(value = "/applicationsReceived",method = RequestMethod.GET)
+    public Result getApplicationReceived(HttpServletRequest request)
+    {
+        return userService.getApplicationsReceived(request);
+    }
 }
 
 

@@ -3,18 +3,18 @@ package daisy.teaming.bean;
 import java.sql.Date;
 
 public class Project {
-    private int projectId;
+    private Integer projectId;
     private String name;
     private Date startTime;
     private Date endTime;
     private String introduction;
     private int maxNum;
 
-    public int getProjectId() {
+    public Integer getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(int projectId) {
+    public void setProjectId(Integer projectId) {
         this.projectId = projectId;
     }
 

@@ -29,6 +29,6 @@ public interface UserMapper {
     @Select("select * from project where projectId in (select projectId from groupProject where groupId in (select groupId from userGroup where account =#{account}))")
     List<Project> getProjects(String account);
 
-    @Select("select * from group where groupId in (select groupId from userGroup where account=#{account})")
+    @Select("select * from `group` where groupId in (select groupId from userGroup where account=#{account})")
     List<Group> getGroups(String account);
 }
