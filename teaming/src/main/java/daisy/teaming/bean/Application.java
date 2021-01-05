@@ -1,17 +1,17 @@
 package daisy.teaming.bean;
 
 public class Application {
-    private int projectId;
+    private int applicationId;
     private int groupId;
     private String account;
-    private String result;
+    private int result;
 
-    public int getProjectId() {
-        return projectId;
+    public int getApplicationId() {
+        return applicationId;
     }
 
-    public void setProjectId(int projectId) {
-        this.projectId = projectId;
+    public void setApplicationId(int applicationId) {
+        this.applicationId = applicationId;
     }
 
     public int getGroupId() {
@@ -30,11 +30,11 @@ public class Application {
         this.account = account;
     }
 
-    public String getResult() {
+    public int getResult() {
         return result;
     }
 
-    public void setResult(String result) {
+    public void setResult(int result) {
         this.result = result;
     }
 }
