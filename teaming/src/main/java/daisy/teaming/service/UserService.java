@@ -1,5 +1,6 @@
 package daisy.teaming.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import daisy.teaming.bean.Group;
 import daisy.teaming.bean.Project;
@@ -51,7 +52,10 @@ public class UserService {
                 String token= JWTUtils.getToke(user.getAccount());
                 result.setMsg("登陆成功");
                 result.setSuccess(true);
-                result.setDetail(token);
+                JSONObject jsonObject=new JSONObject();
+                jsonObject.put("token",token);
+                jsonObject.put("admin",userIn.getAdmin());
+                result.setDetail(jsonObject);
             }
             else
             {
