@@ -3,8 +3,9 @@ package daisy.teaming.bean;
 public class Group {
     private int groupId;
     private String introduction;
+    private String leaderAccount;
     private int maxNum;
-    private int curNum;
+    private String name;
 
     public int getGroupId() {
         return groupId;
@@ -30,11 +31,19 @@ public class Group {
         this.maxNum = maxNum;
     }
 
-    public int getCurNum() {
-        return curNum;
+    public String getLeaderAccount() {
+        return leaderAccount;
     }
 
-    public void setCurNum(int curNum) {
-        this.curNum = curNum;
+    public void setLeaderAccount(String leaderAccount) {
+        this.leaderAccount = leaderAccount;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

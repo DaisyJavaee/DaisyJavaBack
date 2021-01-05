@@ -131,8 +131,7 @@ public class ProjectService {
             }
             else
             {
-                project.setProjectId(projectId);
-                projectMapper.updateProject(project);
+                projectMapper.updateProject(project,projectId);
                 result.setSuccess(true);
                 result.setMsg("修改比赛成功");
             }
