@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/project")
 public class ProjectController {
     @Autowired
     private ProjectService projectService;
@@ -39,9 +38,9 @@ public class ProjectController {
         return projectService.getProjectList();
     }
 
-    @RequestMapping(value="/projects",method=RequestMethod.PATCH)
-    public Result updateProject(@RequestBody Project project,HttpServletRequest request)
+    @RequestMapping(value="/projects/{projectId}",method=RequestMethod.PATCH)
+    public Result updateProject(@RequestBody Project project,int projectId,HttpServletRequest request)
     {
-        return projectService.updateProject(project,request);
+        return projectService.updateProject(project,projectId,request);
     }
 }

@@ -113,7 +113,7 @@ public class ProjectService {
         }
         return result;
     }
-    public Result updateProject(Project project,HttpServletRequest request)
+    public Result updateProject(Project project,int projectId,HttpServletRequest request)
     {
         Result result=new Result();
         result.setSuccess(false);
@@ -131,7 +131,7 @@ public class ProjectService {
             }
             else
             {
-                projectMapper.updateProject(project);
+                projectMapper.updateProject(project,projectId);
                 result.setSuccess(true);
                 result.setMsg("修改比赛成功");
             }
